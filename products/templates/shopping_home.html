@@ -1,0 +1,41 @@
+{% extends "shopping_base.html"%}
+
+{% block styles %}
+<style>
+.jumbotron{
+	text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+        <h1>WELCOME !!</h1>
+        {% if not request.user.is_authenticated %}
+        <p>You have come to the best site for online shopping where you can get whatever you are looking for at the best affordable price. Keep shopping.Keep Smiling</p>
+        {% else %}
+        <p>{{ request.user.username }},have a great time shopping.</p>
+        {% endif %}
+</div>    
+{% endblock %}
+
+{% block content %}
+
+{% for row in pro %}
+    <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="{{row.product_image}}" alt="No Image Available " class="img-responsive" style="width:400px;height:300px;">
+                    <div class="caption">
+                        <h3>{{row.product_name}}</h3>
+                        <p class="description">{{row.product_desc}} </p>
+                        <div class="clearfix">
+                            <div class="price pull-left">Rs.{{row.product_price}}</div>
+                            <a href="{% url 'cart_view' product_id=row.product_id %}" class="btn btn-success pull-right" role="button" method="POST">BUY</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endfor %}
+
+{% endblock %}

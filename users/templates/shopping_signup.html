@@ -1,0 +1,12 @@
+{% extends "shopping_base.html" %}
+
+{% block content %}
+	<h1>Signup </h1>
+	<form action="." method="POST">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<p><input type="submit" value="Submit"></p>
+	</form>
+{% endblock %}

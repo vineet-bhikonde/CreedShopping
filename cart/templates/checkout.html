@@ -1,0 +1,14 @@
+{% extends 'shopping_base.html' %}
+<head>
+	<title>Checkout</title>
+</head>
+{% block content %}
+	<h1>Checkout </h1>
+	<form action="." method="POST">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<p><input type="submit" value="Submit"></p>
+	</form>
+{% endblock %}
